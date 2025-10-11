@@ -1,6 +1,7 @@
 package com.makurea.tests;
 
 import com.makurea.basetests.BaseTest;
+import com.makurea.models.SingleUserResponse;
 import com.makurea.models.User;
 import com.makurea.models.UserResponse;
 import com.makurea.services.UserService;
@@ -36,6 +37,25 @@ public class UserTests extends BaseTest {
           assertThat(firstUser.getFirstName()).isNotBlank();
           assertThat(firstUser.getLastName()).isNotBlank();
           assertThat(firstUser.getAvatar()).startsWith("https://");
+        });
+  }
+
+  @Test
+  @DisplayName("GET /users/{id} - Проверка пользователя по id")
+  @Link(name = "Reqres API", url = "https://reqres.in/api/users/{id}")
+  @Story("Получение определенного пользователя по id")
+  void getUsersForId_ShouldReturnOneUser() throws Exception {
+    SingleUserResponse response = userService.getUsersId();
+    User user = response.getData();
+
+    assertThat(user)
+        .satisfies(list -> {
+          assertThat(user).isNotNull();
+          assertThat(user.getId()).isGreaterThan(0);
+          assertThat(user.getEmail()).contains("@");
+          assertThat(user.getFirstName()).isNotBlank();
+          assertThat(user.getLastName()).isNotBlank();
+          assertThat(user.getAvatar()).startsWith("https://");
         });
   }
 }

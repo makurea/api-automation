@@ -2,6 +2,8 @@ package com.makurea.services;
 
 
 import com.makurea.client.ReqresClient;
+import com.makurea.models.SingleUserResponse;
+import com.makurea.models.User;
 import com.makurea.models.UserResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
@@ -19,5 +21,12 @@ public class UserService {
     Response response = client.getUsers();
     log.debug("Ответ API: {}", response.asString());
     return mapper.readValue(response.asString(), UserResponse.class);
+  }
+
+  public SingleUserResponse getUsersId() throws Exception {
+    log.info("Отправка GET /users запроса");
+    Response response = client.getUsersId();
+    log.debug("Ответ API: {}", response.asString());
+    return mapper.readValue(response.asString(), SingleUserResponse.class);
   }
 }
