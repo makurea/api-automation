@@ -1,2 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sat Oct 11 13:40:33 UTC 2025","Sat Oct 11 13:40:34 UTC 2025","1804","","com.makurea.tests.UserTests","","com.makurea.tests.UserTests","getUsers_ShouldReturnListOfUsers","GET /users - Проверка списка пользователей",""
