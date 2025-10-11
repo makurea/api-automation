@@ -48,5 +48,5 @@ jobs:
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/reports/allure-report
+          publish_dir: allure-report
           publish_branch: gh-pages
