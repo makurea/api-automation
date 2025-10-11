@@ -1,1 +1,1 @@
-[{"uid":"ce3f0b15d6b8ed88","name":"GET /users - Проверка списка пользователей","time":{"start":1760189685575,"stop":1760189687460,"duration":1885},"status":"broken","severity":"normal"}]
+[{"uid":"4c0292a9866c4f1e","name":"GET /users - Проверка списка пользователей","time":{"start":1760190033141,"stop":1760190034945,"duration":1804},"status":"passed","severity":"normal"}]
