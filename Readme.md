@@ -69,7 +69,7 @@ cd api-automation
 ./gradlew allureReport
 ````
 
-Открыть отчёт:
+Открыть отчёт:  
 
 ```bash
 open build/reports/allure-report/index.html
