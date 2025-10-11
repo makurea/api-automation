@@ -1,0 +1,100 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
+group = 'com.testdrip'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    gradlePluginPortal()
+    mavenCentral()
+}
+
+dependencies {
+    // Allure
+    implementation 'io.qameta.allure:allure-junit5:2.21.0'
+
+    // JUnit 5
+    implementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    implementation 'org.junit.platform:junit-platform-suite-api:1.10.2'
+
+    // AssertJ
+    implementation 'org.assertj:assertj-core:3.25.3'
+
+    // Log4j2
+    implementation 'org.apache.logging.log4j:log4j-api:2.21.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.21.0'
+
+    // Мост между SLF4J и Log4j2
+    implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.21.0'
+
+
+    //  REST ASSURED
+    implementation 'io.rest-assured:rest-assured:5.4.0'
+    implementation 'io.rest-assured:json-path:5.4.0'
+    implementation 'io.rest-assured:xml-path:5.4.0'
+
+    // Jackson
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.4'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.18.4'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.4'
+
+}
+
+allure {
+    version = '2.21.0'
+    autoconfigure = true
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources"]
+        }
+    }
+    test {
+        java {
+            srcDirs = ["src/test/java"]
+        }
+        resources {
+            srcDirs = ["src/test/resources"]
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    systemProperties = [
+            'cucumber.features': 'src/test/resources/features/',
+            'cucumber.glue': 'com.testdrip.steps',
+            'allure.results.directory': 'build/allure-results'
+    ]
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+
+    doFirst {
+        delete fileTree(dir: 'build/allure-results', include: '**/*')
+    }
+
+    finalizedBy tasks.allureReport
+}
