@@ -13,13 +13,19 @@ public class ReqresClient {
 
   public Response getUsers() {
     log.info("Выполняем GET запрос к {}", BASE_URL + "/users");
+
     Response response = RestAssured
         .given()
         .baseUri(BASE_URL)
         .basePath("/users")
+        .header("User-Agent", "Mozilla/5.0 (compatible; makurea-api-tests/1.0)")
+        .header("Accept", "application/json")
+        .header("Content-Type", "application/json; charset=UTF-8")
+        .header("Cache-Control", "no-cache")
+        .when()
         .get();
+
     log.debug("Статус ответа: {}", response.getStatusCode());
     return response;
   }
 }
-
