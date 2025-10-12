@@ -2,34 +2,27 @@ package com.makurea.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@JsonIgnoreProperties(ignoreUnknown = true)
+import lombok.Data;
 
+/**
+ * POJO-класс для представления данных о пользователе.
+ * Аннотация @Data автоматически генерирует геттеры, сеттеры,
+ * конструктор со всеми аргументами, toString, equals и hashCode.
+ */
+@Data // Аннотация Lombok
+@JsonIgnoreProperties(ignoreUnknown = true) // Игнорируем поля, которых нет в классе
 public class User {
 
   private int id;
   private String email;
 
   @JsonProperty("first_name")
-  private String firstName;
+  private String firstName; // Lombok сам сгенерирует getFirstName() и setFirstName()
 
   @JsonProperty("last_name")
-  private String lastName;
+  private String lastName; // Lombok сам сгенерирует getLastName() и setLastName()
 
   private String avatar;
 
-  // Геттеры и сеттеры
-  public int getId() { return id; }
-  public void setId(int id) { this.id = id; }
-
-  public String getEmail() { return email; }
-  public void setEmail(String email) { this.email = email; }
-
-  public String getFirstName() { return firstName; }
-  public void setFirstName(String firstName) { this.firstName = firstName; }
-
-  public String getLastName() { return lastName; }
-  public void setLastName(String lastName) { this.lastName = lastName; }
-
-  public String getAvatar() { return avatar; }
-  public void setAvatar(String avatar) { this.avatar = avatar; }
+  // УДАЛЕНО: Весь блок ручных геттеров и сеттеров
 }

@@ -36,11 +36,18 @@ dependencies {
     // Мост между SLF4J и Log4j2
     implementation 'org.apache.logging.log4j:log4j-slf4j2-impl:2.21.0'
 
-
     //  REST ASSURED
     implementation 'io.rest-assured:rest-assured:5.4.0'
     implementation 'io.rest-assured:json-path:5.4.0'
     implementation 'io.rest-assured:xml-path:5.4.0'
+
+    // Lombok:
+    compileOnly 'org.projectlombok:lombok:1.18.42'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
+
+    //  для тестового кода
+    testCompileOnly 'org.projectlombok:lombok:1.18.42'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.42'
 
     // Jackson
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.4'
@@ -82,9 +89,11 @@ test {
     useJUnitPlatform()
 
     systemProperties = [
-            'cucumber.features': 'src/test/resources/features/',
-            'cucumber.glue': 'com.testdrip.steps',
-            'allure.results.directory': 'build/allure-results'
+            'allure.results.directory': 'build/allure-results',
+
+            'file.encoding': 'UTF-8',
+            'sun.stdout.encoding': 'UTF-8',   // Для вывода в консоль (SYSTEM_OUT)
+            'sun.stderr.encoding': 'UTF-8'    // Для вывода ошибок
     ]
 
     testLogging {
