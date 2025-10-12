@@ -9,5 +9,7 @@ public class ApiConfig {
   public static final String BASE_URL = "https://reqres.in/api";
   public static final String USERS_URL = "/users";
   public static final String BASE_USERS_URL = BASE_URL + USERS_URL;
+  public static final String REGISTER_URL = BASE_URL + "/register";
+
 
 }

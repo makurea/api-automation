@@ -1,6 +1,9 @@
 package com.makurea.services;
 
 import com.makurea.client.ReqresClient;
+import com.makurea.models.RegisterErrorResponse;
+import com.makurea.models.RegisterRequest;
+import com.makurea.models.RegisterSuccessResponse;
 import com.makurea.models.SingleUserResponse;
 import com.makurea.models.UserResponse;
 // Убраны: com.fasterxml.jackson.databind.ObjectMapper, io.restassured.response.Response
@@ -38,4 +41,30 @@ public class UserService {
     // Делегируем запрос и десериализацию клиенту.
     return client.getUserById(randomId);
   }
+
+  /**
+   * Выполняет POST-запрос на регистрацию.
+   *
+   * @param credentials Объект с учетными данными (email и password).
+   * @return Объект-контейнер RegisterSuccessResponse, содержащий id и token.
+   */
+  public RegisterSuccessResponse postRegister(RegisterRequest credentials) {
+    // Исправлено логирование: теперь оно отражает действие (регистрацию)
+    log.info("Регистрация пользователя с email: {}", credentials.getEmail());
+    // Делегируем запрос и десериализацию клиенту, передавая необходимые данные.
+    return client.postRegisterUser(credentials);
+  }
+
+  /**
+   * Выполняет POST-запрос на регистрацию, ожидая ошибку 400.
+   *
+   * @param credentials Объект с учетными данными (email и password).
+   * @return Объект-контейнер RegisterErrorResponse, содержащий сообщение об ошибке.
+   */
+  public RegisterErrorResponse postRegisterAndExpectError(RegisterRequest credentials) {
+    log.info("Попытка регистрации с невалидными данными, email: {}", credentials.getEmail());
+    // Делегируем запрос клиенту, который ожидает 400.
+    return client.postRegisterUserWithError(credentials);
+  }
+
 }

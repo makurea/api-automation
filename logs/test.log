@@ -152,3 +152,6 @@
 [2025-10-12 15:31:09] [Test worker] INFO  com.makurea.client.ReqresClient - Отправка запроса GET https://reqres.in/api/users
 [2025-10-12 15:31:11] [Test worker] INFO  com.makurea.services.UserService - Получение пользователя с ID: 2
 [2025-10-12 15:31:11] [Test worker] INFO  com.makurea.client.ReqresClient - Отправка запроса GET https://reqres.in/api/users/2
+[2025-10-12 18:59:57] [Test worker] INFO  com.makurea.client.ReqresClient - Отправка запроса POST https://reqres.in/api/register
+[2025-10-12 19:08:42] [Test worker] INFO  com.makurea.client.ReqresClient - Отправка запроса POST https://reqres.in/api/register
+[2025-10-12 19:08:44] [Test worker] INFO  com.makurea.client.ReqresClient - Отправка запроса POST https://reqres.in/api/register с невалидными данными: готем сити
