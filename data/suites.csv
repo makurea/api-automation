@@ -1,3 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Sat Oct 11 19:08:13 GMT 2025","Sat Oct 11 19:08:16 GMT 2025","2928","","com.makurea.tests.UserTests","","com.makurea.tests.UserTests","getUsers_ShouldReturnListOfUsers","GET /users - Проверка списка пользователей",""
-"passed","Sat Oct 11 19:08:16 GMT 2025","Sat Oct 11 19:08:16 GMT 2025","272","","com.makurea.tests.UserTests","","com.makurea.tests.UserTests","getUsersForId_ShouldReturnOneUser","GET /users/{id} - Проверка пользователя по id",""
+"passed","Sun Oct 12 12:34:51 GMT 2025","Sun Oct 12 12:34:53 GMT 2025","2185","","com.makurea.tests.UserTests","","com.makurea.tests.UserTests","getUsers_ShouldReturnListOfUsers","GET /users - Проверка списка пользователей",""
+"passed","Sun Oct 12 12:34:53 GMT 2025","Sun Oct 12 12:34:53 GMT 2025","65","","com.makurea.tests.UserTests","","com.makurea.tests.UserTests","getUsersForId_ShouldReturnOneUser","GET /users/{id} - Проверка пользователя по id",""
