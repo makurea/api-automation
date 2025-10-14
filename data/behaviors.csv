@@ -1,4 +1,4 @@
 "Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
-"API Testing","User Management","Registration","0","0","2","0","0"
+"API Testing","User Management","Registration","3","0","9","0","0"
 "","","Получение определенного пользователя по id","0","0","1","0","0"
 "","","Получение списка пользователей","0","0","1","0","0"
