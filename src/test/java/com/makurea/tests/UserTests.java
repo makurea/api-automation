@@ -1,24 +1,27 @@
 package com.makurea.tests;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.makurea.basetests.BaseTest;
 import com.makurea.models.SingleUserResponse;
 import com.makurea.models.User;
 import com.makurea.models.UserResponse;
 import com.makurea.services.UserService;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Link;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 /**
  * Класс, содержащий автотесты для API-запросов, связанных с сущностью "Пользователи".
  */
-@Tag("API")
+@Epic("API Testing")
+@Feature("User Management")
+@Story("Users")
+@DisplayName("Проверка эндпоинта GET /users")
 public class UserTests extends BaseTest {
 
   private final UserService userService = new UserService();
@@ -47,7 +50,8 @@ public class UserTests extends BaseTest {
           assertThat(firstUser.getEmail()).as("Email должен содержать символ '@'").contains("@");
           assertThat(firstUser.getFirstName()).as("Имя не должно быть пустым").isNotBlank();
           assertThat(firstUser.getLastName()).as("Фамилия не должна быть пустой").isNotBlank();
-          assertThat(firstUser.getAvatar()).as("Аватар должен быть ссылкой, начинающейся с 'https://'").startsWith("https://");
+          assertThat(firstUser.getAvatar()).as(
+              "Аватар должен быть ссылкой, начинающейся с 'https://'").startsWith("https://");
         });
   }
 
@@ -70,7 +74,8 @@ public class UserTests extends BaseTest {
           assertThat(u.getEmail()).as("Email должен содержать символ '@'").contains("@");
           assertThat(u.getFirstName()).as("Имя не должно быть пустым").isNotBlank();
           assertThat(u.getLastName()).as("Фамилия не должна быть пустой").isNotBlank();
-          assertThat(u.getAvatar()).as("Аватар должен быть ссылкой, начинающейся с 'https://'").startsWith("https://");
+          assertThat(u.getAvatar()).as("Аватар должен быть ссылкой, начинающейся с 'https://'")
+              .startsWith("https://");
         });
   }
 }

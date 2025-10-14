@@ -91,14 +91,38 @@ test {
     systemProperties = [
             'allure.results.directory': 'build/allure-results',
 
-            'file.encoding': 'UTF-8',
-            'sun.stdout.encoding': 'UTF-8',   // Для вывода в консоль (SYSTEM_OUT)
-            'sun.stderr.encoding': 'UTF-8'    // Для вывода ошибок
+            'file.encoding'           : 'UTF-8',
+            'sun.stdout.encoding'     : 'UTF-8',   // Для вывода в консоль (SYSTEM_OUT)
+            'sun.stderr.encoding'     : 'UTF-8'    // Для вывода ошибок
     ]
+
+    useJUnitPlatform()
 
     testLogging {
         events "passed", "skipped", "failed"
+        exceptionFormat "full"
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
         showStandardStreams = true
+
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                def total = result.testCount
+                def passed = result.successfulTestCount
+                def failed = result.failedTestCount
+                def skipped = result.skippedTestCount
+
+                println ""
+                println "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                println "🧪  Test Summary:"
+                println "   🟩 Passed: ${passed}"
+                println "   🟥 Failed: ${failed}"
+                println "   🟨 Skipped: ${skipped}"
+                println "   📊 Total:  ${total}"
+                println "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            }
+        }
     }
 
     doFirst {
