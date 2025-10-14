@@ -10,6 +10,9 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("API Testing")
@@ -47,14 +50,11 @@ public class RegisterTest {
     RegisterSuccessResponse response = reqresClient.postRegisterUser(credentials);
 
     // 3. Проверки (Assertions)
-
-    // Проверка 1: Token должен присутствовать и быть не пустым
     assertThat(response.getToken())
         .as("Проверка наличия и непустого значения токена")
         .isNotNull()
         .isNotEmpty();
 
-    // Проверка 2: ID должен присутствовать и быть положительным числом
     assertThat(response.getId())
         .as("Проверка наличия и положительного значения ID")
         .isNotNull()
@@ -62,39 +62,77 @@ public class RegisterTest {
   }
 
   /**
-   * Тест: Попытка регистрации с невалидными данными.
+   * Тест: Попытка регистрации с невалидным email.
    * Ожидаемый результат: HTTP Status 400 и сообщение об ошибке.
    */
   @Test
   @DisplayName("Невалидный email: должна вернуться ошибка 400 Bad Request")
   void registration_withInvalidEmail_ShouldReturn400Error() {
-    // 1. Ваши исходные данные
     RegisterRequest invalidCredentials = new RegisterRequest()
-        // Используем ваши данные, которые не соответствуют валидному email
         .setEmail("готем сити")
         .setPassword("готем123");
 
-    // 2. Выполнение POST-запроса через клиентский метод, ожидающий 400
     RegisterErrorResponse errorResponse = reqresClient.postRegisterUserWithError(invalidCredentials);
 
-    // 3. Проверки (Assertions)
-
-    // Проверка 1: Объект ошибки не должен быть пустым
     assertThat(errorResponse)
         .as("Проверка, что ответ с ошибкой десериализован")
         .isNotNull();
 
-    // Проверка 2: Поле 'error' должно присутствовать и быть не пустым
     assertThat(errorResponse.getError())
         .as("Проверка наличия сообщения об ошибке")
         .isNotNull()
         .isNotEmpty();
 
-    // Проверка 3: Сообщение об ошибке должно содержать ожидаемый текст
-    // Reqres возвращает эту ошибку, когда email или пароль не совпадают с предопределенными
     assertThat(errorResponse.getError())
         .as("Проверка содержания ошибки")
         .contains("Note: Only defined users succeed registration");
   }
 
+  /**
+   * Параметризованный тест: проверка разных невалидных комбинаций email/пароля.
+   */
+  @ParameterizedTest(name = "Невалидный кейс #{index}: email = \"{0}\", password = \"{1}\"")
+  @CsvSource({
+      // 1. Пустой email
+      "'', gotham123",
+      // 2. Валидный email, пустой пароль
+      "batman@gotham.com, ''",
+      // 3. Email без домена
+      "joker@, haha123",
+      // 4. Email без @
+      "alfred.gmail.com, pass123",
+      // 5. Email с пробелами
+      "'got ham@city.com', dark123",
+      // 6. Email слишком длинный (>100 символов)
+      "'averylongemailaddress_thatiswaytoolongtobevalid_and_shouldcauseanerror_because_it_exceeds_limit@example.com', longpass",
+      // 7. Email с кириллицей
+      "готем@сити.бел, gotham123",
+      // 8. Пароль слишком короткий
+      "robin@gotham.com, 1",
+      // 9. Пароль слишком длинный (>50 символов)
+      "penguin@gotham.com, '123456789012345678901234567890123456789012345678901'",
+      // 10. Оба поля пустые
+      "'', ''"
+  })
+  @DisplayName("Невалидные данные: должна вернуться ошибка 400 Bad Request")
+  void registration_withInvalidData_ShouldReturn400Error(String email, String password) {
+    RegisterRequest invalidCredentials = new RegisterRequest()
+        .setEmail(email)
+        .setPassword(password);
+
+    RegisterErrorResponse errorResponse = reqresClient.postRegisterUserWithError(invalidCredentials);
+
+    assertThat(errorResponse)
+        .as("Проверка, что ответ с ошибкой десериализован")
+        .isNotNull();
+
+    assertThat(errorResponse.getError())
+        .as("Проверка наличия сообщения об ошибке")
+        .isNotNull()
+        .isNotEmpty();
+
+    assertThat(errorResponse.getError())
+        .as("Проверка содержания ошибки")
+        .contains("Note: Only defined users succeed registration");
+  }
 }
