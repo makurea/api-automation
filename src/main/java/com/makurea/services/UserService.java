@@ -5,6 +5,8 @@ import com.makurea.models.RegisterErrorResponse;
 import com.makurea.models.RegisterRequest;
 import com.makurea.models.RegisterSuccessResponse;
 import com.makurea.models.SingleUserResponse;
+import com.makurea.models.LoginRequest;
+import com.makurea.models.LoginSuccessResponse;
 import com.makurea.models.UserResponse;
 // Убраны: com.fasterxml.jackson.databind.ObjectMapper, io.restassured.response.Response
 import java.util.Random;
@@ -18,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 public class UserService {
   private final ReqresClient client = new ReqresClient();
   private static final Logger log = LogManager.getLogger(UserService.class);
+
 
   /**
    * Получает список пользователей.
@@ -66,5 +69,28 @@ public class UserService {
     // Делегируем запрос клиенту, который ожидает 400.
     return client.postRegisterUserWithError(credentials);
   }
+
+  /**
+   * Выполняет POST-запрос на логин.
+   *
+   * @param credentials Объект с учетными данными (username, email, password).
+   * @return Объект-контейнер LoginSuccessResponse, содержащий token.
+   */
+  public LoginSuccessResponse postLogin(LoginRequest credentials) {
+    log.info("Попытка логина пользователя с email: {}", credentials.getEmail());
+    return client.postLogin(credentials);
+  }
+
+  /**
+   * Выполняет POST-запрос на логин, ожидая ошибку 400.
+   *
+   * @param credentials Объект с учетными данными.
+   * @return Объект-контейнер RegisterErrorResponse, содержащий сообщение об ошибке.
+   */
+  public RegisterErrorResponse postLoginAndExpectError(LoginRequest credentials) {
+    log.info("Попытка логина с невалидными данными, email: {}", credentials.getEmail());
+    return client.postLoginAndExpectError(credentials);
+  }
+
 
 }

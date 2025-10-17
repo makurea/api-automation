@@ -1,5 +1,7 @@
 package com.makurea.tests;
 
+import static com.makurea.utils.TestData.VALID_EMAIL;
+import static com.makurea.utils.TestData.VALID_PASSWORD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.makurea.client.ReqresClient;
@@ -20,9 +22,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 @Story("Registration")
 @DisplayName("Проверка эндпоинта POST /api/register")
 public class RegisterTest {
-
-  private static final String VALID_EMAIL = "eve.holt@reqres.in";
-  private static final String VALID_PASSWORD = "pistol";
 
   private static ReqresClient reqresClient;
 

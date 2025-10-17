@@ -4,6 +4,8 @@ import com.makurea.models.RegisterErrorResponse;
 import com.makurea.models.RegisterRequest;
 import com.makurea.models.RegisterSuccessResponse;
 import com.makurea.models.SingleUserResponse;
+import com.makurea.models.LoginRequest;
+import com.makurea.models.LoginSuccessResponse;
 import com.makurea.models.UserResponse; // Добавлен для прямого возврата объекта
 import com.makurea.utils.ApiConfig;
 import io.restassured.response.Response;
@@ -84,4 +86,45 @@ public class ReqresClient extends BaseClient {
         RegisterErrorResponse.class       // Класс для десериализации ответа с ошибкой
     );
   }
+
+  /**
+   * Выполняет POST-запрос на логин с заданными учетными данными (ожидается 200).
+   *
+   * @param credentials Объект LoginRequest с username, email и password.
+   * @return Объект LoginSuccessResponse с token.
+   */
+  public LoginSuccessResponse postLogin(LoginRequest credentials) {
+    // Внимание: Я использую существующую константу REGISTER_URL,
+    // но в реальном проекте вам нужно создать новую, например: ApiConfig.LOGIN_URL
+    String fullUrl = REGISTER_URL.replace("register", "login"); // Адаптируем URL для примера
+    log.info("Отправка запроса POST {} для логина пользователя: {}", fullUrl, credentials.getEmail());
+
+    return RequestHelper.doPost(
+        postBaseSpec(),
+        credentials,
+        SC_OK,
+        fullUrl,
+        LoginSuccessResponse.class
+    );
+  }
+
+  /**
+   * Выполняет POST-запрос на логин, ожидая ошибку 400.
+   *
+   * @param credentials Объект LoginRequest с некорректными данными.
+   * @return Объект RegisterErrorResponse с сообщением об ошибке.
+   */
+  public RegisterErrorResponse postLoginAndExpectError(LoginRequest credentials) {
+    String fullUrl = REGISTER_URL.replace("register", "login");
+    log.info("Попытка логина с невалидными данными, email: {}", credentials.getEmail());
+
+    return RequestHelper.doPost(
+        postBaseSpec(),
+        credentials,
+        SC_BAD_REQUEST, // Ожидаемый статус-код 400
+        fullUrl,
+        RegisterErrorResponse.class // Используем существующий DTO для ответа с ошибкой
+    );
+  }
+
 }
