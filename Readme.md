@@ -8,28 +8,31 @@
 
 ```
 
-api-automation/
-│
-├─ src/main/java/
-│   └─ com/makurea/api/
-│       ├─ client/                # Клиенты для каждого API (Single Responsibility)
-│       │   ├─ ReqresClient.java
-│       │
-│       ├─ models/                # DTO / модели для JSON
-│       │   ├─ User.java
-│       │
-│       ├─ services/              # Логика работы с API (использует clients)
-│       │   ├─ UserService.java
-│       │
-│       └─ utils/                 # Утилиты: генерация данных, проверка схем JSON и т.д.
-│           └─ JsonValidator.java
-│
-├─ src/test/java/
-│   └─ com/example/api/tests/
-│       ├─ UserTests.java         # CRUD тесты для Reqres
-│
-├─ build.gradle                   # Gradle зависимости (Rest Assured, JUnit, Allure)
-└─ README.md
+api-automation/  
+│  
+├─ .github/workflows/             ← CI/CD-настройки  
+├─ .idea/                         ← IDE-файлы (IntelliJ IDEA)  
+├─ gradle/wrapper/                ← wrapper Gradle  
+├─ logs/                          ← лог-каталог  
+├─ src/  
+│    ├─ main/  
+│    │    └─ java/  
+│    │        └─ com/makurea/api/  
+│    │             ├─ client/       ← клиенты API  
+│    │             ├─ models/       ← DTO / модели JSON  
+│    │             ├─ services/     ← логика работы (используя clients)  
+│    │             └─ utils/        ← утилиты (валидация JSON, генерация данных и др.)  
+│    └─ test/  
+│         └─ java/  
+│              └─ com/example/api/tests/  
+│                    └─ UserTests.java  ← тесты  
+├─ .gitignore  
+├─ README.md  
+├─ build.gradle                    ← сборка проекта  
+├─ gradlew  
+├─ gradlew.bat  
+└─ settings.gradle  
+  
 
 ````
 
