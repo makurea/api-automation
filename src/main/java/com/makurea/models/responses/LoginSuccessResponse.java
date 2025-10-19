@@ -1,4 +1,4 @@
-package com.makurea.models;
+package com.makurea.models.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

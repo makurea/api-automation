@@ -1,7 +1,8 @@
-package com.makurea.models;
+package com.makurea.models.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.makurea.models.requests.UserRequest;
 import lombok.Data;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 @Data // Lombok: генерирует геттеры, сеттеры, equals, hashCode и toString
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserResponse {
+public class UserSuccessResponse {
 
   private int page;
 
@@ -24,7 +25,7 @@ public class UserResponse {
   @JsonProperty("total_pages")
   private int totalPages;
 
-  private List<User> data;
+  private List<UserRequest> data;
   private Support support;
 
   @JsonProperty("_meta")

@@ -1,13 +1,13 @@
 package com.makurea.services;
 
 import com.makurea.client.ReqresClient;
-import com.makurea.models.RegisterErrorResponse;
-import com.makurea.models.RegisterRequest;
-import com.makurea.models.RegisterSuccessResponse;
-import com.makurea.models.SingleUserResponse;
-import com.makurea.models.LoginRequest;
-import com.makurea.models.LoginSuccessResponse;
-import com.makurea.models.UserResponse;
+import com.makurea.models.responses.RegisterErrorResponse;
+import com.makurea.models.requests.RegisterRequest;
+import com.makurea.models.responses.RegisterSuccessResponse;
+import com.makurea.models.responses.SingleUserSuccessResponse;
+import com.makurea.models.requests.LoginRequest;
+import com.makurea.models.responses.LoginSuccessResponse;
+import com.makurea.models.responses.UserSuccessResponse;
 // Убраны: com.fasterxml.jackson.databind.ObjectMapper, io.restassured.response.Response
 import java.util.Random;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +26,7 @@ public class UserService {
    * Получает список пользователей.
    * @return Объект-контейнер UserResponse.
    */
-  public UserResponse getUsers() {
+  public UserSuccessResponse getUsers() {
     log.info("Получение списка пользователей.");
     // Делегируем запрос и десериализацию клиенту.
     return client.getUsers();
@@ -36,7 +36,7 @@ public class UserService {
    * Получает случайного пользователя по ID.
    * @return Объект-контейнер SingleUserResponse.
    */
-  public SingleUserResponse getRandomUser() {
+  public SingleUserSuccessResponse getRandomUser() {
     // В API reqres.in, пользователи с 1 по 12 существуют.
     // Random().nextInt(12) + 1; будет более корректным, но оставим 4 для примера.
     int randomId = new Random().nextInt(4) + 1;

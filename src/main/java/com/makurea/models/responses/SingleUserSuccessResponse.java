@@ -1,6 +1,7 @@
-package com.makurea.models;
+package com.makurea.models.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.makurea.models.requests.UserRequest;
 import lombok.Data;
 
 /**
@@ -10,8 +11,8 @@ import lombok.Data;
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SingleUserResponse {
+public class SingleUserSuccessResponse {
 
-  private User data;
+  private UserRequest data;
 
 }

@@ -5,9 +5,9 @@ import static com.makurea.utils.TestData.VALID_PASSWORD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.makurea.client.ReqresClient;
-import com.makurea.models.RegisterErrorResponse;
-import com.makurea.models.RegisterRequest;
-import com.makurea.models.RegisterSuccessResponse;
+import com.makurea.models.responses.RegisterErrorResponse;
+import com.makurea.models.requests.RegisterRequest;
+import com.makurea.models.responses.RegisterSuccessResponse;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;

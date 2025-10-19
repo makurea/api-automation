@@ -3,9 +3,9 @@ package com.makurea.tests;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.makurea.basetests.BaseTest;
-import com.makurea.models.SingleUserResponse;
-import com.makurea.models.User;
-import com.makurea.models.UserResponse;
+import com.makurea.models.responses.SingleUserSuccessResponse;
+import com.makurea.models.requests.UserRequest;
+import com.makurea.models.responses.UserSuccessResponse;
 import com.makurea.services.UserService;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -32,8 +32,8 @@ public class UserTests extends BaseTest {
   @Story("Получение списка пользователей")
   void getUsers_ShouldReturnListOfUsers() { // Убран throws Exception
     // 1. Действие: Получаем ответ в виде POJO-объекта UserResponse
-    UserResponse response = userService.getUsers();
-    List<User> users = response.getData();
+    UserSuccessResponse response = userService.getUsers();
+    List<UserRequest> users = response.getData();
 
     // 2. Проверки (Assertions)
     assertThat(users)
@@ -45,7 +45,7 @@ public class UserTests extends BaseTest {
           assertThat(response.getPage()).as("Номер страницы должен быть > 0").isGreaterThan(0);
 
           // Проверяем поля первого пользователя для гарантии качества данных
-          User firstUser = list.get(0);
+          UserRequest firstUser = list.get(0);
           assertThat(firstUser.getId()).as("ID пользователя должен быть > 0").isGreaterThan(0);
           assertThat(firstUser.getEmail()).as("Email должен содержать символ '@'").contains("@");
           assertThat(firstUser.getFirstName()).as("Имя не должно быть пустым").isNotBlank();
@@ -61,8 +61,8 @@ public class UserTests extends BaseTest {
   @Story("Получение определенного пользователя по id")
   void getUsersForId_ShouldReturnOneUser() { // Убран throws Exception
     // 1. Действие: Получаем случайного пользователя
-    SingleUserResponse response = userService.getRandomUser(); // Использовал getRandomUser
-    User user = response.getData();
+    SingleUserSuccessResponse response = userService.getRandomUser(); // Использовал getRandomUser
+    UserRequest user = response.getData();
 
     // 2. Проверки (Assertions)
     assertThat(user)

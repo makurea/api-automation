@@ -1,4 +1,4 @@
-package com.makurea.models;
+package com.makurea.models.requests;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data // Аннотация Lombok
 @JsonIgnoreProperties(ignoreUnknown = true) // Игнорируем поля, которых нет в классе
-public class User {
+public class UserRequest {
 
   private int id;
   private String email;

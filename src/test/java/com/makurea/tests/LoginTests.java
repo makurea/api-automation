@@ -8,9 +8,9 @@ import static com.makurea.utils.TestData.VALID_LOGIN_USERNAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.makurea.basetests.BaseTest;
-import com.makurea.models.LoginRequest;
-import com.makurea.models.RegisterErrorResponse;
-import com.makurea.models.LoginSuccessResponse;
+import com.makurea.models.requests.LoginRequest;
+import com.makurea.models.responses.RegisterErrorResponse;
+import com.makurea.models.responses.LoginSuccessResponse;
 import com.makurea.services.UserService;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;

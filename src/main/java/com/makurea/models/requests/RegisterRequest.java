@@ -1,4 +1,4 @@
-package com.makurea.models;
+package com.makurea.models.requests;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

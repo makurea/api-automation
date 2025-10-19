@@ -1,18 +1,14 @@
 package com.makurea.client;
 
-import com.makurea.models.RegisterErrorResponse;
-import com.makurea.models.RegisterRequest;
-import com.makurea.models.RegisterSuccessResponse;
-import com.makurea.models.SingleUserResponse;
-import com.makurea.models.LoginRequest;
-import com.makurea.models.LoginSuccessResponse;
-import com.makurea.models.UserResponse; // Добавлен для прямого возврата объекта
-import com.makurea.utils.ApiConfig;
-import io.restassured.response.Response;
+import com.makurea.models.responses.RegisterErrorResponse;
+import com.makurea.models.requests.RegisterRequest;
+import com.makurea.models.responses.RegisterSuccessResponse;
+import com.makurea.models.responses.SingleUserSuccessResponse;
+import com.makurea.models.requests.LoginRequest;
+import com.makurea.models.responses.LoginSuccessResponse;
+import com.makurea.models.responses.UserSuccessResponse; // Добавлен для прямого возврата объекта
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.List;
 
 import static com.makurea.utils.ApiConfig.BASE_USERS_URL;
 import static com.makurea.utils.ApiConfig.REGISTER_URL;
@@ -32,21 +28,21 @@ public class ReqresClient extends BaseClient {
    * Получает список пользователей и десериализует его в объект UserResponse.
    * Использует RequestHelper.doGet для прямой десериализации.
    */
-  public UserResponse getUsers() {
+  public UserSuccessResponse getUsers() {
     log.info("Отправка запроса GET {}", BASE_USERS_URL);
     return RequestHelper.doGet(
-        getBaseSpec(), SC_OK, BASE_USERS_URL, UserResponse.class
+        getBaseSpec(), SC_OK, BASE_USERS_URL, UserSuccessResponse.class
     );
   }
 
   /**
    * Получает одного пользователя по ID и десериализует его в объект SingleUserResponse.
    */
-  public SingleUserResponse getUserById(int id) {
+  public SingleUserSuccessResponse getUserById(int id) {
     String fullUrl = BASE_USERS_URL + "/" + id;
     log.info("Отправка запроса GET {}", fullUrl);
     return RequestHelper.doGet(
-        getBaseSpec(), SC_OK, fullUrl, SingleUserResponse.class
+        getBaseSpec(), SC_OK, fullUrl, SingleUserSuccessResponse.class
     );
   }
 
