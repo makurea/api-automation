@@ -55,6 +55,7 @@ public class UserTests extends BaseTest {
         });
   }
 
+  // test
   @Test
   @DisplayName("GET /users/{id} - Проверка пользователя по id")
   @Link(name = "Reqres API", url = "https://reqres.in/api/users/{id}")
@@ -64,7 +65,7 @@ public class UserTests extends BaseTest {
     SingleUserSuccessResponse response = userService.getRandomUser(); // Использовал getRandomUser
     UserRequest user = response.getData();
 
-    // 2. Проверки (Assertions)
+    // 2. Проверки  (Assertions)
     assertThat(user)
         .as("Объект пользователя не должен быть null")
         .isNotNull()
