@@ -16,7 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 /**
- * Класс, содержащий автотесты для API-запросов, связанных с сущностью "Пользователи".
+ * Класс, содержащий авто тесты для API-запросов, связанных с сущностью "Пользователи".
  */
 @Epic("API Testing")
 @Feature("User Management")
