@@ -85,4 +85,12 @@ open build/reports/allure-report/index.html
 * GitHub Actions автоматически запускает тесты при пуше в `main`.
 * Allure отчёт публикуется на GitHub Pages (`gh-pages` ветка).
 
+---
+
+## Примечания 
+
+```bash
+chcp 65001
+```
+
 

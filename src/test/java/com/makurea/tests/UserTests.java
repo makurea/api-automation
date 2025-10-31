@@ -65,7 +65,7 @@ public class UserTests extends BaseTest {
     SingleUserSuccessResponse response = userService.getRandomUser(); // Использовал getRandomUser
     UserRequest user = response.getData();
 
-    // 2. Проверки  (Assertions)
+    // 2. Проверки(Assertions)
     assertThat(user)
         .as("Объект пользователя не должен быть null")
         .isNotNull()
