@@ -37,7 +37,7 @@ jobs:
 
       # Генерация Allure отчета
       - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1.9
+        uses: simple-elf/allure-report-action@v1.11
         id: allure_report
         if: always()
         with:
