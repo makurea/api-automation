@@ -8,7 +8,6 @@ import com.makurea.models.responses.SingleUserSuccessResponse;
 import com.makurea.models.requests.LoginRequest;
 import com.makurea.models.responses.LoginSuccessResponse;
 import com.makurea.models.responses.UserSuccessResponse;
-// Убраны: com.fasterxml.jackson.databind.ObjectMapper, io.restassured.response.Response
 import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

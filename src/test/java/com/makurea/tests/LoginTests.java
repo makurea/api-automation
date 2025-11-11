@@ -85,7 +85,6 @@ public class LoginTests extends BaseTest {
     assertThat(errorResponse.getError())
         .as("Поле 'error' должно содержать ожидаемое сообщение 'user not found'")
         .isNotBlank()
-        // !!! ИСПРАВЛЕНО: Ожидаем точное совпадение с фактическим ответом API
         .isEqualTo(ERROR_MESSAGE_LOGIN_NOT_FOUND);
   }
 }

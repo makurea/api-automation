@@ -60,7 +60,7 @@ public class UserTests extends BaseTest {
   @DisplayName("GET /users/{id} - Проверка пользователя по id")
   @Link(name = "Reqres API", url = "https://reqres.in/api/users/{id}")
   @Story("Получение определенного пользователя по id")
-  void getUsersForId_ShouldReturnOneUser() { // Убран throws Exception
+  void getUsersForId_ShouldReturnOneUser() {
     // 1. Действие: Получаем случайного пользователя
     SingleUserSuccessResponse response = userService.getRandomUser(); // Использовал getRandomUser
     UserRequest user = response.getData();
