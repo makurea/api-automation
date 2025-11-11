@@ -1,0 +1,8 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","API Testing","0","Authentication","4","0","Login","0"
+"0","API Testing","0","Authentication","3","0","Обработка ошибок при логине","0"
+"0","API Testing","0","User Management","2","0","Users","0"
+"0","API Testing","0","User Management","1","0","Получение списка пользователей","0"
+"0","API Testing","0","User Management","5","0","Registration","0"
+"0","API Testing","0","User Management","1","0","Получение определенного пользователя по id","0"
+"0","API Testing","0","Authentication","1","0","Успешное получение токена","0"
